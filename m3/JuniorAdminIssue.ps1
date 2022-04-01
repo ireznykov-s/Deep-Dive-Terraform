@@ -8,6 +8,8 @@ Set-AWSCredential -ProfileName "Terraform-ned"
 $region = "eu-west-2"
 Set-DefaultAWSRegion -Region $region
 
+Get-EC2Vpc -Filter @{Name="tag:Name"; Values="globo-primary"}
+
 #Get the VPC and AZs
 #This assumes you used globo-primary for the name of the VPC
 $vpc = Get-EC2Vpc -Filter @{Name="tag:Name"; Values="globo-primary"}
@@ -40,7 +42,4 @@ $JimmysResources.Add("privateRouteTable",$privateRouteTable.RouteTableId)
 $JimmysResources.Add("privateRouteTableAssoc","$($privateSubnet.SubnetId)/$($privateRouteTable.RouteTableId)")
 $JimmysResources.Add("publicRouteTableAssoc","$($publicSubnet.SubnetId)/$($publicRouteTable.RouteTableId)")
 
-
 Write-Output ($JimmysResources.GetEnumerator() | sort -Property Name)
-
-

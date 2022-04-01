@@ -20,6 +20,7 @@ terraform apply "m3.tfplan"
 
 # Windows: Install the AWS PowerShell module
 Install-Module AWSPowerShell.NetCore -Scope CurrentUser
+# Runas Administrator:    Install-Module AWSPowerShell.NetCore -Scope AllUsers
 
 # Windows: Run the JuniorAdminIssue.ps1 script
 .\JuniorAdminIssue.ps1
